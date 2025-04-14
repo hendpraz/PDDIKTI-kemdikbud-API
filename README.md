@@ -25,3 +25,8 @@ This will:
 ## pddiktipy
 
 Please refer to the original pddiktipy repository for more information: https://github.com/IlhamriSKY/PDDIKTI-kemdikbud-API
+
+## Tools Related
+- Scraper for MS Teams ITB -> [itb-nim-scrapper](https://github.com/hendpraz/itb-nim-scrapper)
+- ITB NIM Finder Backend -> [nim-finder-backend](https://github.com/hendpraz/nim-finder-backend)
+- ITB NIM Finder Frontend -> [nim-finder-hendpraz](https://github.com/hendpraz/nim-finder-hendpraz)
