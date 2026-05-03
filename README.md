@@ -222,6 +222,39 @@ String results = DiktiScraper.searchMahasiswa("Muhammad ITB", headers);
 System.out.println(results);
 ```
 
+## pddiktigo
+
+### Description
+
+Go version of the same scraper pipeline. It:
+
+- Reads query strings from `pddiktigo/queries.go`.
+- Queries PDDIKTI mahasiswa search for each query.
+- Fetches detail data for every mahasiswa search result.
+- Appends each detail response as a JSON line to an output file.
+
+### Requirements
+
+- Go 1.22 or newer.
+
+### How to Use
+
+Run the scraper from the repository root:
+
+```bash
+go run ./pddiktigo
+```
+
+By default this reads `pddiktigo/queries.go`, waits 20 milliseconds between search queries, and writes to `pddiktigo/mahasiswa_itb.txt`.
+
+Useful options:
+
+```bash
+go run ./pddiktigo --limit 10
+go run ./pddiktigo --delay 50
+go run ./pddiktigo --output pddiktigo/mahasiswa_itb.txt
+```
+
 ## pddiktipy
 
 Please refer to the original pddiktipy repository for more information: https://github.com/IlhamriSKY/PDDIKTI-kemdikbud-API
