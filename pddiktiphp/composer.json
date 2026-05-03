@@ -1,0 +1,13 @@
+{
+  "name": "pddikti/pddiktiphp",
+  "description": "PHP scraper pipeline for PDDIKTI Kemdikbud data.",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0"
+  },
+  "scripts": {
+    "start": "php dikti_scraper.php",
+    "lint": "php -l dikti_scraper.php"
+  }
+}

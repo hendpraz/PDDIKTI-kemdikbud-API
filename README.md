@@ -131,6 +131,55 @@ async function run() {
 run();
 ```
 
+## pddiktiphp
+
+### Description
+
+PHP version of the same scraper pipeline. It:
+
+- Reads query strings from `pddiktiphp/all_mahasiswa_itb.php`.
+- Queries PDDIKTI mahasiswa search for each query.
+- Fetches detail data for every mahasiswa search result.
+- Appends each detail response as a JSON line to an output file.
+
+### Requirements
+
+- PHP 8.0 or newer.
+
+### How to Use
+
+Run the scraper from the repository root:
+
+```bash
+php pddiktiphp/dikti_scraper.php
+```
+
+By default this reads `pddiktiphp/all_mahasiswa_itb.php`, waits 20 milliseconds between search queries, and writes to `pddiktiphp/mahasiswa_itb.txt`.
+
+Useful options:
+
+```bash
+php pddiktiphp/dikti_scraper.php --limit 10
+php pddiktiphp/dikti_scraper.php --delay 50
+php pddiktiphp/dikti_scraper.php --query-file pddiktiphp/all_mahasiswa_itb.php --output pddiktiphp/mahasiswa_itb.txt
+```
+
+You can also include the scraper functions:
+
+```php
+<?php
+
+require __DIR__ . '/pddiktiphp/dikti_scraper.php';
+
+$headers = build_headers();
+$results = search_mahasiswa('Muhammad ITB', $headers);
+$detail = !empty($results[0]['id'])
+    ? get_mhs_detail($results[0]['id'], $headers)
+    : null;
+
+print_r($detail);
+```
+
 ## pddiktipy
 
 Please refer to the original pddiktipy repository for more information: https://github.com/IlhamriSKY/PDDIKTI-kemdikbud-API
