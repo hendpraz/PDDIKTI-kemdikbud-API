@@ -76,6 +76,61 @@ async function run() {
 run();
 ```
 
+## pddiktits
+
+### Description
+
+TypeScript/Node.js version of the same scraper pipeline. It:
+
+- Reads query strings from `pddiktits/all_mahasiswa_itb.ts`.
+- Queries PDDIKTI mahasiswa search for each query.
+- Fetches detail data for every mahasiswa search result.
+- Appends each detail response as a JSON line to an output file.
+
+### Requirements
+
+- Node.js 23.6 or newer to run `.ts` files directly.
+- Optional: `npm install` inside `pddiktits` if you want to run TypeScript type checks with `npm run check`.
+
+### How to Use
+
+Run the scraper from the repository root:
+
+```bash
+node pddiktits/dikti_scraper.ts
+```
+
+By default this reads `pddiktits/all_mahasiswa_itb.ts`, waits 20 milliseconds between search queries, and writes to `pddiktits/mahasiswa_itb.txt`.
+
+Useful options:
+
+```bash
+node pddiktits/dikti_scraper.ts --limit 10
+node pddiktits/dikti_scraper.ts --delay 50
+node pddiktits/dikti_scraper.ts --query-file pddiktits/all_mahasiswa_itb.ts --output pddiktits/mahasiswa_itb.txt
+```
+
+You can also import the typed functions:
+
+```ts
+import {
+  buildHeaders,
+  getMhsDetail,
+  searchMahasiswa,
+} from "./pddiktits/dikti_scraper.ts";
+
+async function run() {
+  const headers = await buildHeaders();
+  const results = await searchMahasiswa("Muhammad ITB", headers);
+  const detail = results?.[0]?.id
+    ? await getMhsDetail(results[0].id, headers)
+    : null;
+  console.log(detail);
+}
+
+run();
+```
+
 ## pddiktipy
 
 Please refer to the original pddiktipy repository for more information: https://github.com/IlhamriSKY/PDDIKTI-kemdikbud-API
