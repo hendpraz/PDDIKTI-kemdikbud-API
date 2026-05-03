@@ -180,6 +180,48 @@ $detail = !empty($results[0]['id'])
 print_r($detail);
 ```
 
+## pddiktijava
+
+### Description
+
+Java version of the same scraper pipeline. It:
+
+- Reads query strings from `pddiktijava/AllMahasiswaItb.java`.
+- Queries PDDIKTI mahasiswa search for each query.
+- Fetches detail data for every mahasiswa search result.
+- Appends each detail response as a JSON line to an output file.
+
+### Requirements
+
+- Java 17 or newer.
+
+### How to Use
+
+Compile and run the scraper from the repository root:
+
+```bash
+javac pddiktijava/*.java
+java -cp pddiktijava DiktiScraper
+```
+
+By default this reads `pddiktijava/AllMahasiswaItb.java`, waits 20 milliseconds between search queries, and writes to `pddiktijava/mahasiswa_itb.txt`.
+
+Useful options:
+
+```bash
+java -cp pddiktijava DiktiScraper --limit 10
+java -cp pddiktijava DiktiScraper --delay 50
+java -cp pddiktijava DiktiScraper --output pddiktijava/mahasiswa_itb.txt
+```
+
+You can also call the scraper methods from Java:
+
+```java
+Map<String, String> headers = DiktiScraper.buildHeaders();
+String results = DiktiScraper.searchMahasiswa("Muhammad ITB", headers);
+System.out.println(results);
+```
+
 ## pddiktipy
 
 Please refer to the original pddiktipy repository for more information: https://github.com/IlhamriSKY/PDDIKTI-kemdikbud-API
